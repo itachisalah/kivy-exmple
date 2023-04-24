@@ -1,0 +1,35 @@
+<Particle>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, self.alpha
+        PushMatrix:
+        Rotate:
+            angle: self.rot
+            origin: self.center
+            axis: 0, 0, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+        PopMatrix:
+
+<Car>:
+    canvas:
+        PushMatrix:
+        Color:
+            rgba: 1,1,1,.8
+        Rotate:
+            angle: self.angle
+            origin: self.center
+            axis: 0, 0, 1
+        Line:
+            rectangle: [self.x, self.y, 30, 50]
+            width: 3
+        Color:
+            rgba: 1, 1, 0, 1
+        Rectangle:
+            size: [8, 8]
+            pos: [self.x + 5, self.y + 52]
+        Rectangle:
+            size: [8, 8]
+            pos: [self.x + 18, self.y + 52]
+        PopMatrix:

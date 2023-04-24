@@ -1,0 +1,43 @@
+<Ball>:
+    size_hint: None, None
+    size: self.size
+    pos: self.pos
+    canvas:
+        Color:
+            rgba: self.color
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<Attractor>:
+    size_hint: None, None
+    size: self.size
+    pos: self.pos
+    canvas:
+        Color:
+            rgba: self.color
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<Pocket>:
+    size_hint: None, None
+    size: self.size
+    pos: self.pos
+    canvas:
+        Color:
+            rgb: self.color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<Box>:
+    size_hint: None, None
+    size: self.size
+    pos: self.pos
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+        Rectangle:
+            pos: self.pos
+            size: self.size

@@ -1,0 +1,61 @@
+<NewFoodButton>
+    icon: 'plus'
+    md_bg_color: app.theme_cls.primary_color
+    text_color: [1, 1, 1, 1]
+    pos: [Window.width - self.width - dp(8), dp(8)]
+    on_press: print(self.pos)
+
+
+<FoodDropDown>:
+    auto_width: False
+    adaptive_height: True
+    size_hint_x: .8
+
+<FoodListItem>:
+    on_release: self.dropdown.select(self.text)
+    bg_color: 1, 1, 1, 1
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+        on_release: root.dropdown.select(root.text)
+
+<PhotoCard>:
+    orientation: 'vertical'
+    size_hint: None, None
+    size: '270dp', '270dp'
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    halign: 'center'
+    focus_behavior: True
+    elevation: 1
+
+<CropLayout>:
+    size_hint: 1, 1
+    padding: 0
+
+    ScatterLayout:
+        id: scatter
+        size_hint: 1,1
+        pos_hint: {'center_x':0.5, "center_y": 0.5}
+        auto_bring_to_front: False
+        canvas: 'after'
+
+        AsyncImage:
+            id: crop_image
+            source: root.path
+
+<DiscardButton>:
+    on_release: self.show_discard_dialog()
+
+<AddIngredientButton>:
+    on_release: self.show_add_dialog()
+
+<DeleteButton>:
+    icon: 'window-close'
+    text: 'DELETE'
+    width: dp(270)
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    halign: 'center'
+    on_release: self.show_delete_dialog()

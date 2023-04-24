@@ -1,0 +1,13 @@
+<Ball>:
+    size: 50, 50
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<BouncingWorld>:
+    myBall: ball
+
+    Ball:
+        id: ball
+        pos: root.center

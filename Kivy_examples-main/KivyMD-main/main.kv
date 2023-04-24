@@ -1,0 +1,73 @@
+#:import MDBoxLayout kivymd.uix.boxlayout.MDBoxLayout
+
+<MyScreenManager>:
+    HomeScreen:
+        name: 'home_screen'
+    AboutScreen:
+        name: 'about_screen'
+
+<HomeScreen>:
+    username:user
+    password:passw
+    MDFloatLayout:
+        orientation: 'vertical'
+        radius: [400, 400, 400, 400]
+        md_bg_color: app.theme_cls.primary_color
+        size_hint_x:1.5
+        size_hint_y:0.25
+        
+        pos_hint:{'center_x':.5,'center_y':0.001 }
+        
+    Image:
+        source:"images/LogoO.png"
+        size_hint_x:None  
+        width:300 
+        pos_hint:{'center_x':.5,'center_y':0.8 }
+    
+    
+    MDTextField:
+        id:user
+        hint_text: ""
+        helper_text:"Entre your name"
+        color_mode: 'accent'
+        helper_text_mode: "persistent"
+        icon_right:"account"
+        icon_right_color: app.theme_cls.primary_color
+        pos_hint:{'center_x':.5,'center_y':0.55 }
+        size_hint_x:None  
+        width:200 
+    MDTextField:
+        id:passw
+        hint_text: ""
+        helper_text:"Entre your password"
+        color_mode: 'accent'
+        helper_text_mode: "persistent"
+        icon_right:"key-variant"
+        icon_right_color: app.theme_cls.primary_color
+        pos_hint:{'center_x':.5,'center_y':0.4 }
+        size_hint_x:None  
+        width:200 
+        password:True
+       
+    MDRectangleFlatButton:
+        text: 'LOGIN'
+        pos_hint:{'center_x':.5,'center_y':0.25}  
+          
+        on_release:
+            root.log()
+
+<AboutScreen>:
+    MDFloatLayout:
+        orientation: 'vertical'
+        radius: [400, 400, 400, 400]
+        md_bg_color: app.theme_cls.primary_color
+        size_hint_x:1.5
+        size_hint_y:0.25
+        
+        pos_hint:{'center_x':.5,'center_y':0.001 }
+    MDRectangleFlatButton:
+        text: 'Go to Home'
+        pos_hint:{'center_x':.5,'center_y':0.25}  
+        on_release:
+            app.root.current = 'home_screen'
+            root.manager.transition.direction='right'

@@ -1,0 +1,212 @@
+#:import sys sys
+#:import MapSource kivy_garden.mapview.MapSource
+
+WindowManager:
+    MainWindow:
+    RecordWindow:
+    ActivityWindow:
+
+<MainWindow>:
+    name: 'main'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            title: 'Sport logger'
+            right_action_items: [["information-outline", lambda x: app.call_about()]]
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            MDList:
+                id: activity_overview
+    MDFloatingActionButtonSpeedDial:
+        id: record_activity_menu
+        data: app.activities_record
+        root_button_anim: True
+        callback: app.callback
+
+<RecordWindow>:
+    canvas.before:
+        Color:
+            rgba: app.theme_cls.primary_light
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: 'record'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            text: app.activity_type
+            size_hint: 1, None
+            font_size: dp(80)
+            height: dp(100)
+            halign: "center"
+        MapView:
+            id: log_map
+            lat: 50.00
+            lon: 3.00
+            zoom: 16
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDRectangleFlatButton:
+                text: 'Start'
+                size_hint: 0.5, None
+                on_press: app.start_pressed()
+            MDRectangleFlatButton:
+                text: 'Stop'
+                size_hint: 0.5, None
+                on_press: app.stop_pressed()
+
+<ActivityWindow>:
+    canvas.before:
+        Color:
+            rgba: app.theme_cls.primary_light
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: 'activity'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            text: app.activity_type
+            size_hint: 1, None
+            font_size: dp(80)
+            height: dp(100)
+            halign: "center"
+        MapView:
+            id: act_map
+            lat: 50.00
+            lon: 3.00
+            zoom: 12
+            size_hint: 1, 1
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDBoxLayout:
+                orientation: 'horizontal'
+                MDLabel:
+                    text: "Date:"
+                    size_hint: 0.4, None
+                    height: dp(50)
+                    font_size: dp(30)
+                MDLabel:
+                    text: app.activity_date
+                    size_hint: 0.6, None
+                    height: dp(50)
+                    font_size: dp(30)
+            MDBoxLayout:
+                orientation: 'horizontal'
+                MDLabel:
+                    text: "Start time:"
+                    size_hint: 0.4, None
+                    height: dp(50)
+                    font_size: dp(30)
+                MDLabel:
+                    text: app.activity_start_time
+                    size_hint: 0.6, None
+                    height: dp(50)
+                    font_size: dp(30)
+            MDBoxLayout:
+                orientation: 'horizontal'
+                MDLabel:
+                    text: "Duration:"
+                    size_hint: 0.4, None
+                    height: dp(50)
+                    font_size: dp(30)
+                MDLabel:
+                    text: app.activity_duration
+                    size_hint: 0.6, None
+                    height: dp(50)
+                    font_size: dp(30)
+            MDBoxLayout:
+                orientation: 'horizontal'
+                MDLabel:
+                    text: "Distance:"
+                    size_hint: 0.4, None
+                    height: dp(50)
+                    font_size: dp(30)
+                MDLabel:
+                    text: app.activity_distance
+                    size_hint: 0.6, None
+                    height: dp(50)
+                    font_size: dp(30)
+            MDBoxLayout:
+                orientation: 'horizontal'
+                MDLabel:
+                    text: "Avg Speed:"
+                    size_hint: 0.4, None
+                    height: dp(50)
+                    font_size: dp(30)
+                MDLabel:
+                    text: app.activity_speed
+                    size_hint: 0.6, None
+                    height: dp(50)
+                    font_size: dp(30)
+    MDFloatingActionButton:
+        icon: "home"
+        md_bg_color: app.theme_cls.primary_color
+        on_press: app.go_back_home()
+        pos: (root.width - 70, 15)
+        radius: dp(100)
+
+
+
+
+
+<Run_activity>:
+    md_bg_color: app.theme_cls.primary_light
+    orientation: 'horizontal'
+    on_press: app.activity_pressed(root.id)
+    size_hint: 1, None
+    height: dp(100)
+    MDIcon:
+        icon: 'run'
+        size_hint: 0.3, 1
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        font_size: dp(80)
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: root.date
+            MDLabel:
+                text: root.start_time
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: root.distance
+            MDLabel:
+                text: root.duration
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: root.pace
+
+<Ride_activity>:
+    md_bg_color: app.theme_cls.primary_light
+    orientation: 'horizontal'
+    on_press: app.activity_pressed(root.id)
+    size_hint: 1, None
+    height: dp(100)
+    MDIcon:
+        icon: 'bike'
+        size_hint: 0.3, 1
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        font_size: dp(80)
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: root.date
+            MDLabel:
+                text: root.start_time
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: root.distance
+            MDLabel:
+                text: root.duration
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: root.avg_spd

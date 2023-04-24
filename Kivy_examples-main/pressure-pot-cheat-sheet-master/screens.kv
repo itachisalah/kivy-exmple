@@ -1,0 +1,333 @@
+#:include add.kv
+#:import MDDropdownMenu kivymd.uix.menu.MDDropdownMenu
+
+<MyScreenManager>
+
+<IngredientScreen>
+    id: ingredient_screen
+    name: 'ingredient_screen'
+    title: 'Cook Information'
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            id: toolbar
+            pos_hint: {"top": 1}
+            title: root.title
+            elevation: 10
+            left_action_items: [['menu', lambda x: root.nav_drawer.set_state("toggle")]]
+
+        ScrollView:
+
+            MDGridLayout:
+                id: grid
+                cols: 1
+                adaptive_height: True
+                padding: '20dp', '4dp'
+                spacing: dp(4)
+                md_bg_color: app.theme_cls.bg_dark
+
+                MDLabel:
+                    id: label1
+                    text: 'Text'
+                    halign: 'center'
+                    valign: 'top'
+                    font_style: 'H4'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDLabel:
+                    id: label2
+                    text: ''
+                    halign: 'center'
+                    valign: 'top'
+                    font_style: 'H6'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                RelativeLayout:
+                    size_hint: None, None
+                    size: Window.width - dp(40), '270dp'
+
+                    MDCard:
+                        id: card
+                        orientation: 'vertical'
+                        background:
+                        padding: '8dp'
+                        size_hint: None, None
+                        size: '270dp', '270dp'
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        halign: 'center'
+
+                MDList:
+                    id: list
+
+                    TwoLineListItem:
+                        id: cook_time
+                        text: 'Cooking Time:'
+                        secondary_text: ''
+
+                    TwoLineListItem:
+                        id: quick_release
+                        text: 'Quick Release:'
+                        secondary_text: ''
+
+                    InfoItem:
+                        id: tips
+                        text: 'Tips'
+                        secondary_text: 'N/A'
+
+                    NoteItem:
+                        id: notes
+                        text: 'Notes'
+                        secondary_text: 'Add your own notes here'
+
+                RelativeLayout:
+                    id: rl
+                    size_hint: None, None
+                    width: Window.width - dp(40)
+                    height: 0
+
+
+<IngredientTile>
+    name: self.name
+
+<StandardScreen>
+    name: self.name
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            id: toolbar
+            pos_hint: {"top": 1}
+            title: root.title
+            elevation: 10
+            left_action_items: [['menu', lambda x: root.nav_drawer.set_state("toggle")]]
+
+        ScrollView:
+
+            MDGridLayout:
+                id: grid
+                cols: 2
+                row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                row_force_default: True
+                adaptive_height: True
+                padding: dp(4), dp(4)
+                spacing: dp(4)
+                md_bg_color: app.theme_cls.bg_dark
+
+    NewFoodButton:
+        id: add_btn
+
+<CreditScreen>
+    name: self.name
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            id: toolbar
+            pos_hint: {"top": 1}
+            title: root.title
+            elevation: 10
+            left_action_items: [['menu', lambda x: root.nav_drawer.set_state("toggle")]]
+
+        ScrollView:
+
+            MDList:
+                id: list
+
+<CreditListItem>
+
+    IconLeftWidget:
+        icon: 'camera'
+
+
+<NewFoodScreen>
+    id: new_food_screen
+    name: 'new_food_screen'
+    title: 'Add an Ingredient'
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            id: toolbar
+            pos_hint: {"top": 1}
+            title: root.title
+            elevation: 10
+            left_action_items: [['menu', lambda x: root.nav_drawer.set_state("toggle")]]
+
+        ScrollView:
+
+            MDGridLayout:
+                id: grid
+                cols: 1
+                adaptive_height: True
+                adaptive_width: False
+                padding: '20dp', '4dp'
+                spacing: dp(4)
+                md_bg_color: app.theme_cls.bg_dark
+
+                MDLabel:
+                    id: label1
+                    text: 'NEW INGREDIENT:'
+                    halign: 'center'
+                    valign: 'top'
+                    font_style: 'Subtitle1'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDDropDownItem:
+                    id: food_type
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    text: 'Choose ingredient type'
+                    adaptive_size: False
+                    size_hint_x: .8
+
+                RelativeLayout:
+                    size_hint: None, None
+                    size: Window.width - dp(40), card.height + dp(8)
+
+                    PhotoCard:
+                        id: card
+                        background: ''
+
+                    MDIcon:
+                        id: card_icon
+                        icon: ''#'image-plus'
+                        halign: 'center'
+                        font_size: '64sp'
+                        pos_hint: {'center_x':.5, 'center_y': .55}
+
+                    MDLabel:
+                        id: card_label
+                        text: ''#'UPLOAD IMAGE'
+                        halign: 'center'
+                        valign: 'bottom'
+                        font_size: '20sp'
+                        pos_hint: {'center_x':.5, 'center_y': .35}
+
+                MDTextField:
+                    id: name1
+                    hint_text: "Ingredient name"
+                    color_mode: 'accent'
+
+                MDTextField:
+                    id: name2
+                    hint_text: "Variety (e.g., size, color, cut...)"
+                    color_mode: 'accent'
+
+                MDTextField:
+                    id: cook_time
+                    hint_text: "Cook time"
+                    color_mode: 'accent'
+
+                MDTextField:
+                    id: quick_release
+                    hint_text: "Quick release?"
+                    color_mode: 'accent'
+
+                BoxLayout:
+                    size_hint_y: None
+                    height: tips.height
+
+                    MDTextField:
+                        id: tips
+                        multiline: True
+                        hint_text: "Enter tips (e.g. ratios)"
+                        color_mode: 'accent'
+
+                BoxLayout:
+                    size_hint_y: None
+                    height: notes.height
+
+                    MDTextField:
+                        id: notes
+                        multiline: True
+                        hint_text: "Enter additional notes"
+                        color_mode: 'accent'
+
+                RelativeLayout:
+                    size_hint: None, None
+                    size: Window.width - dp(40), cancel_btn.height
+
+                    DiscardButton:
+                        id: cancel_btn
+                        icon: 'window-close'
+                        text: 'DISCARD'
+                        width: dp(270)
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        halign: 'center'
+
+                RelativeLayout:
+                    size_hint: None, None
+                    size: Window.width - dp(40), add_btn.height
+
+                    AddIngredientButton:
+                        id: add_btn
+                        icon: 'check-bold'
+                        text: 'ADD INGREDIENT'
+                        text_color: .22, .56, .24, 1
+                        width: dp(270)
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        halign: 'center'
+
+<MenuScreen>
+    name: self.name
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            id: toolbar
+            pos_hint: {"top": 1}
+            title: root.title
+            elevation: 10
+            left_action_items: [['menu', lambda x: root.nav_drawer.set_state("toggle")]]
+
+        ScrollView:
+
+            MDGridLayout:
+                cols: 2
+                row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                row_force_default: True
+                adaptive_height: True
+                padding: dp(4), dp(4)
+                spacing: dp(4)
+                md_bg_color: app.theme_cls.bg_dark
+
+                MenuTile:
+                    name: 'veggie_screen'
+                    source: "images/cauliflower.jpg"
+                    text: "[size=14sp]VEGETABLES[/size]"
+
+                MenuTile:
+                    name: 'meat_screen'
+                    source: "images/chicken-whole.jpg"
+                    text: "[size=14sp]MEAT & EGGS[/size]"
+
+                MenuTile:
+                    name: 'grain_screen'
+                    source: "images/oats.jpg"
+                    text: "[size=14sp]RICE & GRAINS[/size]"
+
+                MenuTile:
+                    name: 'bean_screen'
+                    source: "images/blackeyedpeas.jpg"
+                    text: "[size=14sp]BEANS & LENTILS[/size]\n[size=10sp]dry & soaked[/size]"
+
+                MenuTile:
+                    name: 'fish_screen'
+                    source: "images/clams.jpg"
+                    text: "[size=14sp]SEAFOOD[/size]"
+
+                MenuTile:
+                    name: 'credit_screen'
+                    source: "logo_no_txt2.png"
+                    text: "[size=14sp]CREDITS[/size]"
+
+    NewFoodButton:
+        id: add_btn

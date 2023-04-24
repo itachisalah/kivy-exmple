@@ -1,0 +1,141 @@
+<LoginScreen>:
+    FloatLayout:
+        MDRectangleFlatButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            size_hint: 0.25, 0.02
+            text: 'Go to Sign Up'
+            on_press: root.manager.current = 'signup'
+
+<SignUpScreen>:
+    FloatLayout:
+        MDRectangleFlatButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            size_hint: 0.25, 0.02
+            text: 'Go to Login'
+            on_release: root.manager.current = 'login'
+
+ScreenManager:
+    LoginScreen:
+        id: login
+        name: 'login'
+        MDCard:
+            id: login
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            size_hint: None, None
+            size: 400, 450
+            elevation: 4
+            padding: 0
+            spacing: 0
+            orientation: 'vertical'
+
+            FloatLayout:
+                MDIconButton:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.88}
+                    icon: 'account-circle'
+                    icon_size: 70
+                    on_release: app.change_theme()
+                MDTextField:
+                    id: user
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+                    size_hint_x: 0.77
+                    mode: 'line'
+                    hint_text: 'name'
+                    icon_right: 'account-edit'
+                    max_length_text_color: 'blue'
+                    max_text_length: 30
+                    required: True
+                MDTextField:
+                    id: gmail
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.55}
+                    size_hint_x: 0.77
+                    mode: 'line'
+                    hint_text: 'Email'
+                    validator: 'email'
+                    icon_right: 'email'
+                    required: True
+                MDTextField:
+                    id: pw
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                    size_hint_x: 0.77
+                    mode: 'line'
+                    hint_text: 'Password'
+                    icon_right: 'eye-off'
+                    password: True
+                    required: True
+                MDTextButton:
+                    id: fg_pass
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.28}
+                    text: 'Forgot password?'
+                    color: '#2096f2'
+                    on_press:
+                MDRectangleFlatButton:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+                    size_hint_x: 0.77
+                    text: 'Login'
+                    text_color: 'white'
+                    md_bg_color: '#2096f2'
+                    on_press: app.access()
+
+    SignUpScreen:
+        id: signup
+        name: 'signup'
+        MDCard:
+            id: login
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            size_hint: None, None
+            size: 400, 450
+            elevation: 4
+            padding: 0
+            spacing: 0
+            orientation: 'vertical'
+
+            FloatLayout:
+                MDIconButton:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.91}
+                    icon: 'account-edit'
+                    icon_size: 70
+                    on_release: app.change_theme()
+                MDTextField:
+                    id: user_crt
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.77}
+                    size_hint_x: 0.77
+                    mode: 'line'
+                    hint_text: 'Your name'
+                    icon_right: 'account-edit'
+                    max_length_text_color: 'blue'
+                    max_text_length: 30
+                    required: True
+                MDTextField:
+                    id: gmail_crt
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.63}
+                    size_hint_x: 0.77
+                    mode: 'line'
+                    hint_text: 'Your Email'
+                    validator: 'email'
+                    icon_right: 'email'
+                    required: True
+                MDTextField:
+                    id: pw_crt
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.48}
+                    size_hint_x: 0.77
+                    mode: 'line'
+                    hint_text: 'Create a password'
+                    icon_right: 'eye-off'
+                    password: True
+                    required: True
+                MDTextField:
+                    id: pw_crt_vrf
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.33}
+                    size_hint_x: 0.77
+                    mode: 'line'
+                    hint_text: 'Repeat password'
+                    icon_right: 'eye-off'
+                    password: True
+                    required: True
+                MDRectangleFlatButton:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+                    size_hint_x: 0.77
+                    text: 'Sing Up'
+                    text_color: 'white'
+                    md_bg_color: '#2096f2'
+                    on_press: app.verify_sign()

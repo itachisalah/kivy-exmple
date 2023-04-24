@@ -1,0 +1,9 @@
+example.db
+book_covers/
+__pycache__/
+images/png/
+test.py
+books.db
+pie2.png
+pie.png
+book_list.txt

@@ -1,0 +1,58 @@
+<Car>:
+    canvas:
+        PushMatrix:
+        Color:
+            rgba: 1,1,1,.8
+        Rotate:
+            angle: self.angle
+            origin: self.center
+            axis: 0, 0, 1
+        Line:
+            rectangle: [self.x, self.y, 30, 50]
+            width: 3
+        Color:
+            rgba: 1, 1, 0, 1
+        Rectangle:
+            size: [8, 8]
+            pos: [self.x + 5, self.y + 52]
+        Rectangle:
+            size: [8, 8]
+            pos: [self.x + 18, self.y + 52]
+        PopMatrix:
+
+
+<Arrow>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, .8
+        PushMatrix:
+        Rotate:
+            angle: self.angle
+            origin: self.pos
+            axis: 0, 0, 1
+        Line:
+            points: self.x, self.y, self.x, self.y+100
+            width: 2
+        PopMatrix:
+    Label:
+        pos: 100, 100
+        text: str(round(-root.angle)) + " degrees"
+
+
+<Boid>:
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+        PushMatrix:
+        Rotate:
+            angle: self.angle
+            origin: self.center
+            axis: 0, 0, 1
+        Triangle:
+            points: self.x, self.y, self.x+14, self.y, self.x+7, self.y+20
+        PopMatrix:
+        Color:
+            rgba: 1,0,0,1
+        Ellipse:
+            size: 10, 10
+            pos: self.target

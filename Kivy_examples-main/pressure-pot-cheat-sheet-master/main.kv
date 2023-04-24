@@ -1,0 +1,19 @@
+#:include nav.kv
+#:include screens.kv
+#:include dialogs.kv
+
+Screen:
+
+    NavigationLayout:
+
+        MyScreenManager:
+            id: screen_manager
+            nav_drawer: nav_drawer
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ContentNavigationDrawer:
+                id: content_drawer
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer

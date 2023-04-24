@@ -1,0 +1,99 @@
+#:import SwapTransition kivy.uix.screenmanager.SwapTransition
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import Gradient kivy_gradient.Gradient
+
+<Splash>:
+    md_bg_color: [0, 100, 100, 1]
+    on_enter:self.ids.progress.start()
+    MDFloatLayout:
+        Image:
+            source: "../icons/cloud-music-icon.png"
+            pos_hint: {"center_x": .5, "center_y": .7}
+            size_hint: .8, .4
+            anim_delay: 0
+            anim_reset: True
+
+        MDBoxLayout:
+            pos_hint: {"center_x":.5, "center_y":.3}
+            padding: "10dp"
+            size_hint: .8, .02
+            MDProgressBar:
+                id: progress
+                color: [0, 0, 0, 1]
+                orientation: "horizontal"
+                type: "determinate"
+                running_duration: 10
+                catching_duration: 1.2
+
+<MainScreen>:
+    canvas:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            texture: Gradient.vertical(get_color_from_hex("#F58544"), get_color_from_hex("#00FFFF"))
+
+    MDNavigationLayout:
+
+        ScreenManager:
+            id: WindowManager
+            transition: SwapTransition()
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            width: 200
+            radius: (0, 30, 30, 0)
+            md_bg_color: [0, 20, 100, 1]
+
+            MDNavigationDrawerMenu:
+                id: Menu
+                spacing: dp(40)
+
+                DrawerClickableItem:
+                    right_text: "Music"
+                    text_right_color: "#4a4939"
+                    icon: "music-circle-outline"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "MusicWindow"
+
+                DrawerClickableItem:
+                    right_text: "Videos"
+                    text_right_color: "#4a4939"
+                    icon: "motion-play"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "VideosWindow"
+
+                DrawerClickableItem:
+                    right_text: "Pictures"
+                    text_right_color: "#4a4939"
+                    icon: "image-filter-hdr"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "PicturesWindow"
+
+                DrawerClickableItem:
+                    right_text: "Library"
+                    text_right_color: "#4a4939"
+                    icon: "plus-box-multiple"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "LibraryWindow"
+
+                DrawerClickableItem:
+                    right_text: "Explore"
+                    text_right_color: "#4a4939"
+                    icon: "compass"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "ExploreWindow"
+
+                DrawerClickableItem:
+                    right_text: "Settings"
+                    text_right_color: "#4a4939"
+                    icon: "dots-horizontal-circle"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "MenuWindow"
+
+
